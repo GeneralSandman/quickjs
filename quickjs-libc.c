@@ -820,7 +820,7 @@ static JSValue js_evalScript(JSContext *ctx, JSValue this_val,
 static JSClassID js_std_file_class_id;
 
 typedef struct {
-    FILE *f;
+    FILE *f; // 这里定义了
     BOOL close_in_finalizer;
     BOOL is_popen;
 } JSSTDFile;

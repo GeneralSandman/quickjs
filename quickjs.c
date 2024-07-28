@@ -67,6 +67,8 @@
 #define CONFIG_ATOMICS
 #endif
 
+#define DUMP_BYTECODE_STEP
+
 // Debug trace system:
 // uncomment one or more DUMP_XXX definition to produce debug output.
 // define the DUMP_XXX symbol as empty or 0 for unconditional output
@@ -28355,6 +28357,8 @@ static __maybe_unused void dump_pc2line(JSContext *ctx,
     int pc, v;
     unsigned int op;
 
+    p_next = NULL;
+
     if (len <= 0)
         return;
 
@@ -28366,12 +28370,12 @@ static __maybe_unused void dump_pc2line(JSContext *ctx,
     while (p < p_end) {
         op = *p++;
         if (op == 0) {
-            v = unicode_from_utf8(p, p_end - p, &p_next);
+            // v = unicode_from_utf8(p, p_end - p, &p_next);
             if (v < 0)
                 goto fail;
             pc += v;
             p = p_next;
-            v = unicode_from_utf8(p, p_end - p, &p_next);
+            // v = unicode_from_utf8(p, p_end - p, &p_next);
             if (v < 0)
                 goto fail;
             if (v & 1) {
@@ -28386,7 +28390,7 @@ static __maybe_unused void dump_pc2line(JSContext *ctx,
             pc += (op / PC2LINE_RANGE);
             line_num += (op % PC2LINE_RANGE) + PC2LINE_BASE;
         }
-        v = unicode_from_utf8(p, p_end - p, &p_next);
+        // v = unicode_from_utf8(p, p_end - p, &p_next);
         if (v < 0)
             goto fail;
         if (v & 1) {
