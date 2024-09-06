@@ -67,6 +67,7 @@
 #define CONFIG_ATOMICS
 #endif
 
+// lizhenhu
 #define DUMP_BYTECODE_STEP
 
 // Debug trace system:

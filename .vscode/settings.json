@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.ring": "go",
+        "_types.h": "c"
+    }
+}
